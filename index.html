@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Metas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Gerenciamento de Metas</h1>
+    
+    <div id="formSection">
+        <label for="totalGoal">Meta Mensal:</label>
+        <input type="number" id="totalGoal" placeholder="Insira a meta mensal" step="0.01">
+        <button onclick="setMonthlyGoal()">Definir Meta Mensal</button>
+        <br>
+        <label for="sellerName">Adicionar Vendedor:</label>
+        <input type="text" id="sellerName" placeholder="Nome do vendedor">
+        <button onclick="addSeller()">Adicionar Vendedor</button>
+    </div>
+
+    <div id="sellerSection" style="display: none;">
+        <h2>Lista de Vendedores</h2>
+        <ul id="sellerList"></ul>
+        <h2>Metas Diárias</h2>
+        <div id="calendarContainer"></div>
+    </div>
+
+    <div id="absenceSection">
+        <h2>Registrar Falta</h2>
+        <label for="absenceDate">Data:</label>
+        <input type="date" id="absenceDate">
+        <label for="absentSeller">Vendedor:</label>
+        <div class="select-wrapper">
+            <select id="absentSeller">
+                <option value="" disabled selected>Selecione o vendedor</option>
+            </select>
+        </div>
+        <label for="justification">Justificativa:</label>
+        <input type="text" id="justification" placeholder="Justificativa">
+        <button onclick="registerAbsence()">Registrar Falta</button>
+    </div>
+
+    <div id="summaryButton">
+        <button onclick="window.location.href='resumo.html'">Resumo do Mês</button>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
