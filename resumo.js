@@ -1,34 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    displaySummary();
+    loadSummaryData();
 });
 
-function displaySummary() {
+function loadSummaryData() {
     const summaryResults = document.getElementById('summaryResults');
     summaryResults.innerHTML = '';
 
     const totalGoal = parseFloat(localStorage.getItem('totalGoal')) || 0;
+    const workingDays = parseInt(localStorage.getItem('workingDays')) || 0;
     const sellers = JSON.parse(localStorage.getItem('sellers')) || [];
+    const dailyGoals = JSON.parse(localStorage.getItem('dailyGoals')) || {};
     const absences = JSON.parse(localStorage.getItem('absences')) || [];
     const sales = JSON.parse(localStorage.getItem('sales')) || {};
 
-    const monthlyGoalPerSeller = totalGoal / sellers.length;
-
     sellers.forEach(seller => {
-        const workedDays = Object.keys(sales[seller] || {}).length;
-        const absencesCount = absences.filter(absence => absence.seller === seller).length;
-        const justifiedAbsencesCount = absences.filter(absence => absence.seller === seller && absence.justification).length;
-        const unjustifiedAbsencesCount = absencesCount - justifiedAbsencesCount;
-
-        const totalAchievedForSeller = Object.values(sales[seller] || {}).reduce((a, b) => a + b, 0);
-        const percentageAchieved = (totalAchievedForSeller / monthlyGoalPerSeller) * 100;
+        const totalSales = Object.values(sales[seller] || {}).reduce((sum, value) => sum + value, 0);
+        const workedDays = workingDays - absences.filter(a => a.seller === seller && !a.justification).length;
+        const justifiedAbsences = absences.filter(a => a.seller === seller && a.justification).length;
+        const unjustifiedAbsences = absences.filter(a => a.seller === seller && !a.justification).length;
+        const goalPercentage = (totalSales / totalGoal) * 100;
 
         summaryResults.innerHTML += `
-            <div><strong>Nome do Vendedor:</strong> ${seller}</div>
-            <div><strong>Dias Trabalhados:</strong> ${workedDays}</div>
-            <div><strong>Faltas Com Justificativas:</strong> ${justifiedAbsencesCount}</div>
-            <div><strong>Faltas Sem Justificativas:</strong> ${unjustifiedAbsencesCount}</div>
-            <div><strong>Percentual Alcançado:</strong> ${percentageAchieved.toFixed(2)}%</div>
-            <hr>
+            <div>
+                <h3>${seller}</h3>
+                <p>Dias Trabalhados: ${workedDays}</p>
+                <p>Faltas Com Justificativas: ${justifiedAbsences}</p>
+                <p>Faltas Sem Justificativas: ${unjustifiedAbsences}</p>
+                <p>Percentual Alcançado: ${goalPercentage.toFixed(2)}%</p>
+            </div>
         `;
     });
 }

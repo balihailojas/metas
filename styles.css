@@ -9,7 +9,7 @@ body {
 h1 {
     color: orange;
     text-align: center;
-    padding: 20px;
+    margin-top: 20px;
 }
 
 button {
@@ -21,7 +21,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 0;
+    margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
@@ -35,7 +35,7 @@ input[type="number"],
 input[type="text"],
 input[type="date"],
 select {
-    width: 100%;
+    width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -43,40 +43,51 @@ select {
     box-sizing: border-box;
 }
 
-#formSection, #absenceSection, #summarySection {
+#formSection,
+#absenceSection,
+#summaryButton {
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    max-width: 600px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#sellerSection {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #sellerList {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 #sellerList li {
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #eaeaea;
-    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-#sellerList button {
-    background: transparent;
-    border: none;
+#sellerList li button {
+    background-color: transparent;
     color: red;
+    border: none;
     cursor: pointer;
 }
 
 #calendarContainer {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .calendar-day {
@@ -84,24 +95,51 @@ select {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
-    background-color: #f4f4f4;
+    background-color: #fff;
     color: black;
-    flex: 1 0 20%;
+    flex: 1 0 30%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
-#resultsSection {
+.calendar-day strong {
+    color: orange;
+    margin-bottom: 10px;
+}
+
+#summaryButton,
+#backButton {
+    text-align: center;
     margin-top: 20px;
 }
 
-#summaryList {
-    list-style-type: none;
-    padding: 0;
+#summaryButton button,
+#backButton button {
+    background-color: orange;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-#summaryList li {
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #eaeaea;
-    border-radius: 5px;
+#summaryButton button:hover,
+#backButton button:hover {
+    background-color: darkorange;
+    transform: scale(1.05);
+}
+
+#summaryResults {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
 }
