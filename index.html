@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Metas</title>
+    <title>Metas de Vendedores</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -31,19 +31,13 @@
         <label for="absenceDate">Data:</label>
         <input type="date" id="absenceDate">
         <label for="absentSeller">Vendedor:</label>
-        <div class="select-wrapper">
-            <select id="absentSeller">
-                <option value="" disabled selected>Selecione o vendedor</option>
-            </select>
-        </div>
+        <select id="absentSeller"></select>
         <label for="justification">Justificativa:</label>
         <input type="text" id="justification" placeholder="Justificativa">
         <button onclick="registerAbsence()">Registrar Falta</button>
     </div>
 
-    <div id="summaryButton">
-        <button onclick="window.location.href='resumo.html'">Resumo do Mês</button>
-    </div>
+    <button onclick="window.location.href='summary.html'">Resumo do Mês</button>
 
     <script src="scripts.js"></script>
 </body>
